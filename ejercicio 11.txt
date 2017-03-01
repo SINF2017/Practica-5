@@ -1,0 +1,34 @@
+Ejercicio 11: Crea dos nuevos usuarios en tu SGBD haz las
+modificaciones de permisos necesarias para que
+cada uno de ellos sólo pueda acceder a tu base
+de datos mediante las tres vistas definidas anteriormente.
+
+
+1.- Pasamos a modo 'root'.
+2.- Creamos un nuevo usuario:
+      -> CREATE USER 'invitado'@'localhost' IDENTIFIED BY 'mypass';
+3.- Otorgamos permiso a inivtado para ver solamente una serie de vistas:
+      -> GRANT SELECT ON practica2.info_peliculas
+         TO 'inivtado'@'localhost' IDENTIFIED BY 'Sinfpracticas2017prueba!';
+
+         Resultado:
+
+         +------------------------------------------------------------------------+
+         | Grants for invitado@localhost                                          |
+         +------------------------------------------------------------------------+
+         | GRANT USAGE ON *.* TO 'invitado'@'localhost'                           |
+         | GRANT SELECT ON `practica2`.`info_peliculas` TO 'invitado'@'localhost' |
+         +------------------------------------------------------------------------+
+
+NOTAS:
+
+  a)  En modo root, para ver todos los usuarios que tenemos en nuestra base
+      de datos:
+          -> SELECT user from mysql.user;
+
+  b) Para ver los permisos que tiene un determinado usuario en nuestra
+     base de datos:
+          -> SHOW GRANTS FOR 'invitado'@'localhost';
+
+  c) Para ver las tablas/relaciones que tenemos en una base de datos:
+          -> SHOW TABLES IN practica2;
